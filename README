@@ -30,3 +30,14 @@ foreach ($values as $val) {
 	yalib::gi('test')->p($sql)->bv(':col', $val)->e();
 }
 ?>
+
+
+例2: DSNでのMySQL接続
+<?php
+include 'yalib.php';
+$dsn = 'mysql://user:password@mysql.example.com:3366/test_schema';
+$sql = 'SELECT a,b,c FROM table WHERE id>:id';
+while ($row = yalib::gi('dsn', $dsn)->p($sql)->f(':id', 2000)) {
+	var_dump($row);
+}
+?>
