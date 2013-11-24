@@ -1,0 +1,13 @@
+[default]
+	host = 'your.mysql.host'
+	port = 3306
+	schema = 'dbname'
+	username = 'username'
+	password = 'password'
+[test]
+	host = 'test.mysql.host'
+	port = 3306
+	schema = 'dbname'
+	username = 'username'
+	password = 'password'
+

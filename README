@@ -1,0 +1,32 @@
+yalibは面倒なPDOの手続きを簡略化する、小さく軽量なラッパクラスです。
+O/Rマッパでは無いのでSQLは記述する必要があります。
+そして最大の特徴は、ほぼ全てをメソッドチェーンで記述できるという事です。
+
+以下の例を見て下さい。
+
+例1: テーブルから全ての行を取得します
+<?php
+include('yalib.php');
+$sql = 'SELECT a,b,c FROM table WHERE id>2000';
+$rows = yalib::gi('test')->p($sql)-fa();
+var_dump($rows);
+?>
+
+例2: テーブルから条件付きで1行ずつ取得し、ループで表示します
+<?php
+include('yalib.php');
+$sql = 'SELECT a,b,c FROM table WHERE id>:id';
+while ($row = yalib::gi('test')->p($sql)->f(':id', 2000)) {
+	var_dump($row);
+}
+?>
+
+例3: 条件を変えながらINSERTを実行します
+<?php
+include('yalib.php');
+$values = array(30, 2, 44, 5000, 4, 8);
+$sql = 'INSERT INTO table(col) VALUES(:col)';
+foreach ($values as $val) {
+	yalib::gi('test')->p($sql)->bv(':col', $val)->e();
+}
+?>
